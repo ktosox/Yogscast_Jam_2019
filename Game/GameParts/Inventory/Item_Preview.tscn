@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://GameParts/Inventory/Item_Preview.gd" type="Script" id=1]
+[ext_resource path="res://Resources/REXARD/GemsIcons/GemsIcons_png/1.PNG" type="Texture" id=2]
+
+[node name="Item_Preview" type="Control"]
+margin_right = 64.0
+margin_bottom = 64.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+script = ExtResource( 1 )
+
+[node name="Item" type="TextureRect" parent="."]
+margin_left = -28.0
+margin_top = -28.0
+margin_right = 36.0
+margin_bottom = 36.0
+rect_min_size = Vector2( 64, 64 )
+texture = ExtResource( 2 )
+expand = true
