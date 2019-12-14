@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://KeyScenes/MiddleArena/MiddleArena.gd" type="Script" id=1]
+[ext_resource path="res://KeyScenes/MiddleArena/MiddleCamera.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Resources/REXARD/Wooden_UI_png/plank_17.png" type="Texture" id=3]
+[ext_resource path="res://GameParts/Inventory/Inventory.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Resources/REXARD/Wooden_UI_png/Plank_04.png" type="Texture" id=5]
+[ext_resource path="res://Resources/REXARD/Wooden_UI_png/Plank_03.png" type="Texture" id=6]
+[ext_resource path="res://Resources/REXARD/Wooden_UI_png/plank_19.png" type="Texture" id=7]
+[ext_resource path="res://GameParts/TileSet/World_map.tscn" type="PackedScene" id=8]
+
+[node name="MiddleArena" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="CameraMiddle" parent="." instance=ExtResource( 2 )]
+position = Vector2( 570.929, 362.159 )
+
+[node name="Overlay" type="CanvasLayer" parent="."]
+editor/display_folded = true
+
+[node name="plank_17" type="Sprite" parent="Overlay"]
+position = Vector2( 1238.13, 355.364 )
+rotation = 1.5708
+scale = Vector2( 1.993, 0.887859 )
+texture = ExtResource( 3 )
+
+[node name="plank_18" type="Sprite" parent="Overlay"]
+position = Vector2( 1010.93, 357.637 )
+rotation = 1.5708
+scale = Vector2( 1.993, 0.887859 )
+texture = ExtResource( 3 )
+
+[node name="Inventory" parent="Overlay" instance=ExtResource( 4 )]
+margin_left = 990.0
+margin_right = -22.0007
+
+[node name="Plank_04" type="Sprite" parent="Overlay"]
+position = Vector2( 629.857, 744.117 )
+scale = Vector2( 1.55691, 0.777824 )
+z_index = 1
+texture = ExtResource( 5 )
+
+[node name="Plank_03" type="Sprite" parent="Overlay"]
+position = Vector2( 602.851, -42.6273 )
+scale = Vector2( 1.63057, 1 )
+z_index = 1
+texture = ExtResource( 6 )
+
+[node name="plank_19" type="Sprite" parent="Overlay"]
+position = Vector2( 3.2399, 358.663 )
+rotation = 1.5708
+scale = Vector2( 1.5591, 0.646662 )
+z_index = 1
+texture = ExtResource( 7 )
+
+[node name="Map" parent="." instance=ExtResource( 8 )]
+position = Vector2( 358.028, 392.976 )
+tile_data = PoolIntArray( -393220, 1, 0, -393219, 1, 0, -393218, 1, 0, -393217, 1, 0, -458752, 1, 0, -458751, 1, 0, -458750, 1, 0, -458749, 1, 0, -458748, 1, 0, -327684, 1, 0, -327683, 1, 0, -327682, 1, 0, -327681, 1, 0, -393216, 1, 0, -393215, 1, 0, -393214, 1, 0, -393213, 1, 0, -393212, 1, 0, -262148, 1, 0, -262147, 1, 0, -262146, 1, 0, -262145, 1, 0, -327680, 1, 0, -327679, 1, 0, -327678, 1, 0, -327677, 1, 0, -327676, 1, 0, -196612, 1, 0, -196611, 1, 0, -196610, 1, 0, -196609, 1, 0, -262144, 1, 0, -262143, 1, 0, -262142, 1, 0, -262141, 1, 0, -262140, 1, 0, -131076, 1, 0, -131075, 1, 0, -131074, 1, 0, -131073, 1, 0, -196608, 1, 0, -196607, 1, 0, -196606, 1, 0, -196605, 1, 0, -196604, 1, 0, -65540, 1, 0, -65539, 1, 0, -65538, 1, 0, -65537, 1, 0, -131072, 1, 0, -131071, 1, 0, -131070, 1, 0, -131069, 1, 0, -131068, 1, 0, -4, 1, 0, -3, 1, 0, -2, 1, 0, -1, 1, 0, -65536, 1, 0, -65535, 1, 0, -65534, 1, 0, -65533, 1, 0, -65532, 1, 0, 65532, 1, 0, 65533, 1, 0, 65534, 1, 0, 65535, 1, 0, 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0 )

@@ -9,7 +9,7 @@ var creditsPath = "res://KeyScenes/Credits/Credits.tscn"
 
 var mainMenuPath = "res://KeyScenes/MainMenu/MainMenu.tscn"
 
-var gamePath = "TBD"
+var gamePath = "res://KeyScenes/MiddleArena/MiddleArena.tscn"
 
 var pauseMenuScene = load("res://GameParts/PauseMenu/PauseMenu.tscn")
 

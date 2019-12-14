@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Resources/REXARD/GemsIcons/GemsIcons_png/3.PNG" type="Texture" id=1]
+[ext_resource path="res://Resources/REXARD/GemsIcons/GemsIcons_png/5.PNG" type="Texture" id=1]
 [ext_resource path="res://GameParts/Inventory/Item_Slot.gd" type="Script" id=2]
+[ext_resource path="res://Resources/REXARD/Wooden_UI_png/frame_c2_01.png" type="Texture" id=3]
 
 [node name="Item_Slot" type="TextureRect"]
 anchor_left = 0.5
@@ -21,9 +22,11 @@ stretch_mode = 1
 script = ExtResource( 2 )
 item_ID = 5
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 show_behind_parent = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-color = Color( 0.109804, 0.027451, 0.262745, 1 )
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 1

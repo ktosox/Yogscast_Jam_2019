@@ -7,7 +7,8 @@ export var item_ID : int
 var item_is_dragged = false
 
 func _ready():
-	test_random()
+	pass
+	#test_random()
 
 func get_drag_data(position):
 	if(item_ID == 0):
