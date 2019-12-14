@@ -32,7 +32,7 @@ tracks/1/keys = {
 }
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 8.68475
+radius = 7.80941
 
 [node name="Gem" type="RigidBody2D"]
 mass = 600.0
@@ -52,7 +52,7 @@ anims/drop_and_bounce = SubResource( 1 )
 
 [node name="image" type="Sprite" parent="."]
 position = Vector2( 0.265457, 0.341606 )
-scale = Vector2( 0.1, 0.1 )
+scale = Vector2( 0.08, 0.08 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

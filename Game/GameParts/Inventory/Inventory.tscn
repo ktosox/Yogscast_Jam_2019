@@ -35,10 +35,10 @@ script = ExtResource( 2 )
 [node name="Warning" type="Label" parent="."]
 modulate = Color( 0.796078, 0, 0, 1 )
 self_modulate = Color( 1, 1, 1, 0 )
-margin_left = -836.404
-margin_top = 33.4073
-margin_right = -93.4036
-margin_bottom = 109.407
+margin_left = -838.989
+margin_top = 52.7926
+margin_right = -95.9883
+margin_bottom = 128.793
 custom_fonts/font = ExtResource( 3 )
 text = "INVENTORY IS FULL"
 

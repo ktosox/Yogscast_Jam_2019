@@ -19,7 +19,6 @@ script = ExtResource( 1 )
 position = Vector2( 570.929, 362.159 )
 
 [node name="Overlay" type="CanvasLayer" parent="."]
-editor/display_folded = true
 
 [node name="plank_17" type="Sprite" parent="Overlay"]
 position = Vector2( 1238.13, 355.364 )

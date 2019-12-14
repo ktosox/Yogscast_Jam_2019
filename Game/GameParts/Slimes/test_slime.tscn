@@ -1,13 +1,57 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://GameParts/Slimes/test_slime.gd" type="Script" id=1]
-[ext_resource path="res://Resources/test_Slime/Untitled.png" type="Texture" id=2]
+[ext_resource path="res://GameParts/Slimes/slime_spritesheet_prpl.png" type="Texture" id=2]
 [ext_resource path="res://GameParts/Slimes/Gem_Taker.tscn" type="PackedScene" id=3]
+
+[sub_resource type="Animation" id=3]
+resource_name = "grow"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 9, 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimationPlayer:current_animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 2.9 ),
+"transitions": PoolRealArray( 1 ),
+"update": 2,
+"values": [ "idle" ]
+}
 
 [sub_resource type="Animation" id=1]
 resource_name = "idle"
 length = 3.0
 loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 10, 19 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "rise"
+length = 3.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
@@ -18,12 +62,12 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 0, 10 ]
+"values": [ 20, 29 ]
 }
 
-[sub_resource type="CapsuleShape2D" id=2]
-radius = 16.0
-height = 6.0
+[sub_resource type="CapsuleShape2D" id=4]
+radius = 7.85135
+height = 13.8931
 
 [node name="test_slime" type="RigidBody2D"]
 mass = 20.0
@@ -32,13 +76,17 @@ script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0.349648, -2.97203 )
-scale = Vector2( 0.5, 0.5 )
+scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 2 )
+vframes = 3
 hframes = 10
+frame = 10
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
-autoplay = "idle"
+autoplay = "grow"
+anims/grow = SubResource( 3 )
 anims/idle = SubResource( 1 )
+anims/rise = SubResource( 2 )
 
 [node name="Face" type="Node2D" parent="."]
 visible = false
@@ -49,7 +97,6 @@ visible = false
 position = Vector2( -3.32169, 2.62238 )
 points = PoolVector2Array( -13.6643, -11.4056, 1.54546, -10.7063 )
 width = 4.0
-texture_mode = 0
 
 [node name="Line2D2" type="Line2D" parent="Face/Brows"]
 position = Vector2( 12.7622, 2.62238 )
@@ -61,7 +108,7 @@ texture_mode = 1119354880
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
-shape = SubResource( 2 )
+shape = SubResource( 4 )
 
 [node name="Gem_Taker" parent="." instance=ExtResource( 3 )]
 margin_left = -17.0687
