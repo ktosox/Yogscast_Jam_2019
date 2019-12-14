@@ -5,6 +5,8 @@ extends Node
 
 var currentCamera
 
+var currentInventory
+
 var creditsPath = "res://KeyScenes/Credits/Credits.tscn"
 
 var mainMenuPath = "res://KeyScenes/MainMenu/MainMenu.tscn"

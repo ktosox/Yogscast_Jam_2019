@@ -5,7 +5,8 @@ var zoom_CD = true
 
 var move_vector = Vector2()
 
-
+func _ready():
+	GM.currentCamera = self
 
 var scroll_speed = 900.0
 
@@ -37,6 +38,7 @@ func _physics_process(delta):
 		move_vector += Vector2(0,-1)
 	if(Input.is_action_pressed("ui_down")):
 		move_vector += Vector2(0,1)
+
 	position += delta * move_vector * scroll_speed
 
 

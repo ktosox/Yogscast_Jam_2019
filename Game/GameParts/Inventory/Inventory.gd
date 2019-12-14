@@ -1,7 +1,7 @@
 extends Control
 
 func _ready():
-	print(find_free_slot())
+	GM.currentInventory = self
 
 func find_free_slot():
 	for x in $Layout.get_child_count() :
@@ -10,4 +10,10 @@ func find_free_slot():
 	return 0
 
 func add_item(item_ID):
-	pass
+	var freeSlot = find_free_slot()
+	if (freeSlot is int):
+		$Warning/AnimationPlayer.play("New Anim")
+		return false
+	else:
+		freeSlot.change_item(item_ID)
+		return true
