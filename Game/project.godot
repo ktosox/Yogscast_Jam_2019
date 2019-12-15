@@ -79,6 +79,14 @@ MW_down={
  ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Walls"
+2d_physics/layer_2="Slime"
+2d_physics/layer_3="Slime_attacks"
+2d_physics/layer_4="Enemy"
+2d_physics/layer_5="Enemy_attacks"
+
 [rendering]
 
 quality/driver/driver_name="GLES2"

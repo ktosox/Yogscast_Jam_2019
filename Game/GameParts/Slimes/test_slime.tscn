@@ -1,10 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://GameParts/Slimes/test_slime.gd" type="Script" id=1]
 [ext_resource path="res://GameParts/Slimes/slime_spritesheet_prpl.png" type="Texture" id=2]
 [ext_resource path="res://GameParts/Slimes/Gem_Taker.tscn" type="PackedScene" id=3]
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=1]
 resource_name = "grow"
 length = 3.0
 tracks/0/type = "value"
@@ -32,8 +32,7 @@ tracks/1/keys = {
 "values": [ "idle" ]
 }
 
-[sub_resource type="Animation" id=1]
-resource_name = "idle"
+[sub_resource type="Animation" id=2]
 length = 3.0
 loop = true
 tracks/0/type = "value"
@@ -49,8 +48,73 @@ tracks/0/keys = {
 "values": [ 10, 19 ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "rise"
+[sub_resource type="Animation" id=3]
+resource_name = "jump"
+length = 2.4
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.3, 0.8, 1.3, 1.8, 2.1 ),
+"transitions": PoolRealArray( 1, 1, -2, 1, 1 ),
+"update": 3,
+"values": [ 17, 16, 14, 14, 10 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimationPlayer:current_animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 2.3 ),
+"transitions": PoolRealArray( 1 ),
+"update": 2,
+"values": [ "idle" ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "jump_to_random"
+} ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.7, 1.1, 1.3 ),
+"transitions": PoolRealArray( 1, 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 0.3, 0.3 ), Vector2( 0.16, 0.16 ), Vector2( 0.3, 0.3 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("..:linear_damp")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1.4, 1.6, 2.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ -1.0, -1.0, 8.0, -1.0 ]
+}
+
+[sub_resource type="Animation" id=4]
 length = 3.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -65,8 +129,8 @@ tracks/0/keys = {
 "values": [ 20, 29 ]
 }
 
-[sub_resource type="CapsuleShape2D" id=4]
-radius = 7.85135
+[sub_resource type="CapsuleShape2D" id=5]
+radius = 10.2754
 height = 13.8931
 
 [node name="test_slime" type="RigidBody2D"]
@@ -84,9 +148,10 @@ frame = 10
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 autoplay = "grow"
-anims/grow = SubResource( 3 )
-anims/idle = SubResource( 1 )
-anims/rise = SubResource( 2 )
+anims/grow = SubResource( 1 )
+anims/idle = SubResource( 2 )
+anims/jump = SubResource( 3 )
+anims/rise = SubResource( 4 )
 
 [node name="Face" type="Node2D" parent="."]
 visible = false
@@ -97,6 +162,7 @@ visible = false
 position = Vector2( -3.32169, 2.62238 )
 points = PoolVector2Array( -13.6643, -11.4056, 1.54546, -10.7063 )
 width = 4.0
+texture_mode = 222
 
 [node name="Line2D2" type="Line2D" parent="Face/Brows"]
 position = Vector2( 12.7622, 2.62238 )
@@ -108,7 +174,7 @@ texture_mode = 1119354880
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="Gem_Taker" parent="." instance=ExtResource( 3 )]
 margin_left = -17.0687

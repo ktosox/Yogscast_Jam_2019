@@ -30,8 +30,11 @@ func use_gem(in_gem):
 	pass
 
 func doSomething():
-	applied_force = Vector2((randf()-0.5)*300,(randf()-0.5)*300)
+	$Sprite/AnimationPlayer.play("jump")
 	pass
+
+func jump_to_random():
+	apply_impulse(Vector2(), Vector2((randf()-0.5),(randf()-0.5)) * 3500)
 
 func _physics_process(delta):
 	if (abs(rotation_degrees)>5):
@@ -39,5 +42,5 @@ func _physics_process(delta):
 
 func _on_TimerBored_timeout():
 	doSomething()
-	$TimerBored.start(randi()%4)
+	$TimerBored.start(randf()*2)
 	pass # Replace with function body.
