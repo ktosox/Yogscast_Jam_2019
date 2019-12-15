@@ -20,6 +20,6 @@ func update_image():
 
 func test_random():
 	randomize()
-	item_ID = randi()%120 +1
+	item_ID = randi()%40+1
 	update_image()
 	

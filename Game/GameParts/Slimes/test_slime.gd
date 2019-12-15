@@ -1,5 +1,7 @@
 extends RigidBody2D
 
+var is_dead = false
+
 var blueGems = [5,7,10,16,19,21,26,27]
 
 var greenGems = [1,8,13,23,25,29,30,33,36,37,38,39]
@@ -12,20 +14,13 @@ var purpleGems = [11,12,20,22,24]
 
 var target
 
+var speed = 183500
+
+var HP = 10
+
 var is_moving = false
 
 func _ready():
-	match(randi()%5):
-		0:
-			$Sprite.texture = load("res://GameParts/Slimes/slime_spritesheet_blue.png")
-		1:
-			$Sprite.texture = load("res://GameParts/Slimes/slime_spritesheet_grn.png")
-		2:
-			$Sprite.texture = load("res://GameParts/Slimes/slime_spritesheet_red.png")
-		3:
-			$Sprite.texture = load("res://GameParts/Slimes/slime_spritesheet_orng.png")
-		4:
-			$Sprite.texture = load("res://GameParts/Slimes/slime_spritesheet_prpl.png")
 	doSomething()
 
 func use_gem(in_gem):
@@ -33,31 +28,45 @@ func use_gem(in_gem):
 		1:
 			redGem()
 		2:
-			pass
+			blueGem()
 		3:
-			pass
+			greenGem()
 		4:
-			pass
+			orangeGem()
 		5:
-			pass
+			purpleGem()
 
 func redGem():
 	pass
+	HP = 300
+	$Scaler/Sprite.texture = load("res://GameParts/Slimes/slime_spritesheet_red.png")
+	$TimerBored.stop()
+	$Scaler/Sprite/AnimationPlayer.play("rise_boom")
 
 func blueGem():
+	$Scaler/Sprite.texture = load("res://GameParts/Slimes/slime_spritesheet_blue.png")
+	$TimerBored.stop()
+	$Scaler/Sprite/AnimationPlayer.play("rise")
 	pass
 
 func greenGem():
+	$Scaler/Sprite.texture = load("res://GameParts/Slimes/slime_spritesheet_grn.png")
+	HP = 30
+	$Scaler.scale *= Vector2(1.4,1.4)
 	pass
 
 func orangeGem():
+	$Scaler/Sprite.texture = load("res://GameParts/Slimes/slime_spritesheet_orng.png")
+	speed *= 1.5
 	pass
 
 func purpleGem():
+	$Scaler/Sprite.texture = load("res://GameParts/Slimes/slime_spritesheet_prpl.png")
+	die()
 	pass
 
 func doSomething():
-	$Sprite/AnimationPlayer.play("jump")
+	$Scaler/Sprite/AnimationPlayer.play("jump")
 	
 	pass
 
@@ -73,7 +82,7 @@ func jump_to_random():
 		where_to.x = sin(anglel)
 		where_to.y = -cos(anglel)
 		print(where_to)
-	apply_impulse(Vector2(), where_to * 183500)
+	apply_impulse(Vector2(), where_to * speed)
 	
 
 
@@ -88,6 +97,26 @@ func _on_TimerBored_timeout():
 
 func damange(source):
 	target = source
+	HP -=1
+	if(HP < 0):
+		if(!is_dead):
+			die()
+	pass
+
+func explode():
+	var all_targets = $Explosion.get_overlapping_areas()
+	for x in all_targets.size():
+		if(all_targets[x].get_collision_layer_bit( 3 )):
+			all_targets[x]._on_Collider_body_entered(self)
+	die()
+
+func die():
+	is_dead = true
+	$TimerBored.stop()
+	$Scaler/Sprite/AnimationPlayer.play("shrink")
+	$CollisionShape2D.disabled = true
+	$Gem_Taker.can_take_gems = false
+	$TimerDead.start()
 	pass
 
 func _on_test_slime_body_entered(body):
@@ -108,3 +137,7 @@ func gem_check(gem):
 		return 4
 	if(purpleGems.has(gem)):
 		return 5
+
+func _on_TimerDead_timeout():
+	self.queue_free()
+	pass # Replace with function body.

@@ -26,8 +26,15 @@ func _physics_process(delta):
 func splat():
 	$PathFollow2D/dude.visible = false
 	$PathFollow2D/splat.visible = true
+	$PathFollow2D/Collider/CollisionShape2D.disabled
+	$TimerReScan.stop()
+	$FireAnimator.stop()
+	moving = false
+	$TimerDeath.start()
 
 func fire_bullet():
+	if(!is_instance_valid(target)):
+		return
 	var newBullet = bulletScene.instance()
 	newBullet.global_position = $PathFollow2D.global_position
 	newBullet.global_rotation = atan2(target.global_position.x- $PathFollow2D.global_position.x,$PathFollow2D.global_position.y-target.global_position.y) - rotation
@@ -62,9 +69,6 @@ func _on_DetectionRange_body_entered(body):
 
 func _on_Collider_body_entered(body):
 	splat()
-	$FireAnimator.stop()
-	moving = false
-	$TimerDeath.start()
 	pass # Replace with function body.
 
 

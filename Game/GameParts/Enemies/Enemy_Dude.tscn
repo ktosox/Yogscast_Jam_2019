@@ -79,7 +79,7 @@ collision_mask = 6
 shape = SubResource( 2 )
 
 [node name="Collider" type="Area2D" parent="PathFollow2D"]
-collision_layer = 0
+collision_layer = 8
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/Collider"]
@@ -102,6 +102,7 @@ anims/fast = SubResource( 5 )
 anims/slow = SubResource( 4 )
 
 [node name="TimerDeath" type="Timer" parent="."]
+wait_time = 3.0
 one_shot = true
 
 [node name="TimerReScan" type="Timer" parent="."]
