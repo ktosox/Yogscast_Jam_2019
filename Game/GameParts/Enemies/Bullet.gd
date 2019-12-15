@@ -2,6 +2,8 @@ extends RigidBody2D
 
 var speed = 300
 
+var source
+
 func launch():
 	var velocity = Vector2()
 	velocity.x = sin(deg2rad(global_rotation_degrees))

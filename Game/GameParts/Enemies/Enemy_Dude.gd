@@ -32,6 +32,7 @@ func fire_bullet():
 	newBullet.global_position = $PathFollow2D.global_position
 	newBullet.global_rotation = atan2(target.global_position.x- $PathFollow2D.global_position.x,$PathFollow2D.global_position.y-target.global_position.y) - rotation
 	get_parent().add_child(newBullet)
+	newBullet.source = $PathFollow2D
 	newBullet.launch()
 	pass
 
@@ -69,4 +70,10 @@ func _on_Collider_body_entered(body):
 
 func _on_TimerDeath_timeout():
 	queue_free()
+	pass # Replace with function body.
+
+
+func _on_TimerReScan_timeout():
+	if($FireAnimator.is_playing()==false and moving == false):
+		scan()
 	pass # Replace with function body.

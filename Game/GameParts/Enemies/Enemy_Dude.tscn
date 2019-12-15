@@ -103,6 +103,11 @@ anims/slow = SubResource( 4 )
 
 [node name="TimerDeath" type="Timer" parent="."]
 one_shot = true
+
+[node name="TimerReScan" type="Timer" parent="."]
+wait_time = 4.0
+autostart = true
 [connection signal="body_entered" from="PathFollow2D/DetectionRange" to="." method="_on_DetectionRange_body_entered"]
 [connection signal="body_entered" from="PathFollow2D/Collider" to="." method="_on_Collider_body_entered"]
 [connection signal="timeout" from="TimerDeath" to="." method="_on_TimerDeath_timeout"]
+[connection signal="timeout" from="TimerReScan" to="." method="_on_TimerReScan_timeout"]
