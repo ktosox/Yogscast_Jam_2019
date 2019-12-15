@@ -9,6 +9,8 @@ var currentInventory
 
 var currentBase
 
+var difficulty = 1
+
 var creditsPath = "res://KeyScenes/Credits/Credits.tscn"
 
 var mainMenuPath = "res://KeyScenes/MainMenu/MainMenu.tscn"

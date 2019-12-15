@@ -1,3 +1,28 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://GameParts/Enemies/Enemy_Spawner.gd" type="Script" id=1]
 
 [node name="Enemy_Spawner" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="TimerWave" type="Timer" parent="."]
+wait_time = 20.0
+autostart = true
+
+[node name="TimerTest" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="Loc1" type="Position2D" parent="."]
+position = Vector2( -120.135, -87.4771 )
+
+[node name="Loc2" type="Position2D" parent="."]
+position = Vector2( 156.292, -106.139 )
+
+[node name="Loc3" type="Position2D" parent="."]
+position = Vector2( -135.298, 107.305 )
+
+[node name="Loc4" type="Position2D" parent="."]
+position = Vector2( 226.274, 89.8098 )
+[connection signal="timeout" from="TimerWave" to="." method="_on_TimerWave_timeout"]
+[connection signal="timeout" from="TimerTest" to="." method="_on_TimerTest_timeout"]

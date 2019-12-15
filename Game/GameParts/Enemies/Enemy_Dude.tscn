@@ -1,34 +1,94 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://GameParts/Enemies/Enemy_Dude.gd" type="Script" id=1]
 
-[sub_resource type="Curve2D" id=2]
-_data = {
-"points": PoolVector2Array( 0, 0, 0, 0, -12.084, -5.38486 )
-}
+[sub_resource type="CircleShape2D" id=2]
+radius = 100.339
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 2.30486, 4.15247 )
 
+[sub_resource type="Animation" id=5]
+resource_name = "fast"
+length = 3.0
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.4, 0.8, 1.4, 2.1, 2.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "fire_bullet"
+}, {
+"args": [  ],
+"method": "fire_bullet"
+}, {
+"args": [  ],
+"method": "fire_bullet"
+}, {
+"args": [  ],
+"method": "fire_bullet"
+}, {
+"args": [  ],
+"method": "scan"
+} ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "slow"
+length = 2.4
+loop = true
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.3, 1.4, 2.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "fire_bullet"
+}, {
+"args": [  ],
+"method": "fire_bullet"
+}, {
+"args": [  ],
+"method": "scan"
+} ]
+}
+
 [node name="Enemy_Dude" type="Path2D"]
-curve = SubResource( 2 )
+curve = null
 script = ExtResource( 1 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
 rotate = false
 loop = false
 
-[node name="collider" type="Area2D" parent="PathFollow2D"]
-collision_layer = 8
-collision_mask = 6
+[node name="DetectionRange" type="Area2D" parent="PathFollow2D"]
+collision_layer = 0
+collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/collider"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/DetectionRange"]
+shape = SubResource( 2 )
+
+[node name="Collider" type="Area2D" parent="PathFollow2D"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/Collider"]
 position = Vector2( 0, -3.68437 )
-shape = SubResource( 1 )
+shape = SubResource( 3 )
 
 [node name="splat" type="Polygon2D" parent="PathFollow2D"]
 visible = false
-scale = Vector2( 1, 0.3 )
+scale = Vector2( 1, 0.5 )
 color = Color( 0.262745, 0, 0, 1 )
 polygon = PoolVector2Array( -5.70891, -4.14264, -3.71156, -1.34659, -8.23489, 2.71281, -3.59557, 1.66896, -4.60474, 4.87468, -0.696007, 4.33657, 1.85562, 7.81606, 3.13143, 3.52469, 4.78064, 5.05871, 4.52322, 1.32101, 7.88673, 0.509132, 4.17528, -0.998646, 5.51674, -5.98291, 2.20357, -3.78223, -2.0878, -7.49369, -2.31976, -3.78223 )
 
@@ -36,4 +96,8 @@ polygon = PoolVector2Array( -5.70891, -4.14264, -3.71156, -1.34659, -8.23489, 2.
 position = Vector2( -0.360195, -3.3268 )
 color = Color( 0.00392157, 0.188235, 0.054902, 1 )
 polygon = PoolVector2Array( -1.32162, -4.3593, -2.10978, 3.88449, 2.69579, 3.88449, 1.96569, -4.4066 )
-[connection signal="body_entered" from="PathFollow2D/collider" to="." method="_on_collider_body_entered"]
+
+[node name="FireAnimator" type="AnimationPlayer" parent="."]
+anims/fast = SubResource( 5 )
+anims/slow = SubResource( 4 )
+[connection signal="body_entered" from="PathFollow2D/DetectionRange" to="." method="_on_DetectionRange_body_entered"]

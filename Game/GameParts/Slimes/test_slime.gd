@@ -44,3 +44,14 @@ func _on_TimerBored_timeout():
 	doSomething()
 	$TimerBored.start(randf()*2)
 	pass # Replace with function body.
+
+func damange():
+	print("ouch")
+	pass
+
+func _on_test_slime_body_entered(body):
+	if(body.get_collision_layer_bit(4)): #this is a bullet
+		damange()
+		body.pop()
+	if(body.get_collision_layer_bit(3)): #this is a dude
+		body.splat()

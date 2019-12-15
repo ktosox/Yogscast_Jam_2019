@@ -590,5 +590,6 @@ polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 scale = Vector2( 2, 2 )
 tile_set = SubResource( 80 )
 cell_size = Vector2( 16, 16 )
+collision_mask = 30
 format = 1
 script = ExtResource( 2 )
