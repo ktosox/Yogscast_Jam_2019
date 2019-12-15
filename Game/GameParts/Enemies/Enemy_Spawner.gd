@@ -1,7 +1,6 @@
 extends Node2D
 
 
-
 func spawn_dude():
 	get_parent().addEnemyDude(random_loc())
 	pass
@@ -18,18 +17,8 @@ func random_loc():
 			return $Loc4.global_position
 
 
-func spawn_wave(ammount):
-	for x in ammount:
-		get_parent().addEnemyDude(random_loc() + Vector2((randf()-0.5)*50,(randf()-0.5)*50))
-	pass
+func spawn_wave():
+	var tartget_loc = random_loc()
+	for x in GM.difficulty*2 + 3:
+		get_parent().addEnemyDude(tartget_loc + Vector2((randf()-0.5)*150,(randf()-0.5)*150))
 
-func _on_TimerTest_timeout():
-	print("boop")
-	spawn_dude()
-	pass # Replace with function body.
-
-
-func _on_TimerWave_timeout():
-	spawn_wave(GM.difficulty*2 + 3)
-	GM.difficulty+=1
-	pass # Replace with function body.

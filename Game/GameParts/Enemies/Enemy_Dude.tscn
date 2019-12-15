@@ -72,8 +72,8 @@ rotate = false
 loop = false
 
 [node name="DetectionRange" type="Area2D" parent="PathFollow2D"]
-collision_layer = 0
-collision_mask = 2
+collision_layer = 8
+collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/DetectionRange"]
 shape = SubResource( 2 )
@@ -100,4 +100,9 @@ polygon = PoolVector2Array( -1.32162, -4.3593, -2.10978, 3.88449, 2.69579, 3.884
 [node name="FireAnimator" type="AnimationPlayer" parent="."]
 anims/fast = SubResource( 5 )
 anims/slow = SubResource( 4 )
+
+[node name="TimerDeath" type="Timer" parent="."]
+one_shot = true
 [connection signal="body_entered" from="PathFollow2D/DetectionRange" to="." method="_on_DetectionRange_body_entered"]
+[connection signal="body_entered" from="PathFollow2D/Collider" to="." method="_on_Collider_body_entered"]
+[connection signal="timeout" from="TimerDeath" to="." method="_on_TimerDeath_timeout"]

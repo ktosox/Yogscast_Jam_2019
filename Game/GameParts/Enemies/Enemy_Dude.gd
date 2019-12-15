@@ -37,7 +37,7 @@ func fire_bullet():
 
 func attack():
 	moving = false
-	if (GM.difficulty == 1):
+	if (GM.difficulty <2):
 		$FireAnimator.play("slow")
 	else:
 		$FireAnimator.play("fast")
@@ -56,4 +56,17 @@ func _on_DetectionRange_body_entered(body):
 	if(body.get_collision_layer_bit(1)): #this is a slime
 		target = body
 		attack()
+	pass # Replace with function body.
+
+
+func _on_Collider_body_entered(body):
+	splat()
+	$FireAnimator.stop()
+	moving = false
+	$TimerDeath.start()
+	pass # Replace with function body.
+
+
+func _on_TimerDeath_timeout():
+	queue_free()
 	pass # Replace with function body.

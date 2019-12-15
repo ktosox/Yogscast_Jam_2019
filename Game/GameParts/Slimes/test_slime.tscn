@@ -130,13 +130,13 @@ tracks/0/keys = {
 }
 
 [sub_resource type="CapsuleShape2D" id=5]
-radius = 10.2754
-height = 13.8931
+radius = 14.5088
+height = 10.0965
 
 [node name="test_slime" type="RigidBody2D"]
 collision_layer = 2
 collision_mask = 18
-mass = 20.0
+mass = 720.0
 gravity_scale = 0.0
 contacts_reported = 3
 contact_monitor = true
@@ -177,6 +177,7 @@ texture_mode = 1119354880
 [node name="Eyes" type="Node2D" parent="Face"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -1.49891 )
 rotation = 1.5708
 shape = SubResource( 5 )
 
