@@ -38,10 +38,18 @@ func update_item(): # change item texture to match ID
 		texture = null
 	else:
 		texture = load("res://Resources/REXARD/GemsIcons/GemsIcons_png/"+String(item_ID)+".PNG")
+	updateHint()
 
 func change_item(newID): #set new item ID as input, calls update_item()
 	item_ID = newID
 	update_item()
+
+func updateHint():
+	if(item_ID == 0):
+		hint_tooltip = ""
+	else:
+		hint_tooltip = "this is a gem"
+	pass
 
 	
 func test_random():
@@ -50,3 +58,6 @@ func test_random():
 	if(item_ID>100):
 		item_ID = 0
 	update_item()
+
+
+

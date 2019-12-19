@@ -30,13 +30,13 @@ func _input(event):
 
 func _physics_process(delta):
 	move_vector = Vector2()
-	if(Input.is_action_pressed("ui_right")):
+	if(Input.is_action_pressed("ui_right") and global_position.x<limit_right):
 		move_vector += Vector2(1,0)
-	if(Input.is_action_pressed("ui_left")):
+	if(Input.is_action_pressed("ui_left") and global_position.x>limit_left):
 		move_vector += Vector2(-1,0)
-	if(Input.is_action_pressed("ui_up")):
+	if(Input.is_action_pressed("ui_up") and global_position.y>limit_top):
 		move_vector += Vector2(0,-1)
-	if(Input.is_action_pressed("ui_down")):
+	if(Input.is_action_pressed("ui_down") and global_position.y<limit_bottom):
 		move_vector += Vector2(0,1)
 
 	position += delta * move_vector * scroll_speed

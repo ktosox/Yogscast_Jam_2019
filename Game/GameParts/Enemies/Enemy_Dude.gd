@@ -68,7 +68,9 @@ func _on_DetectionRange_body_entered(body):
 
 
 func _on_Collider_body_entered(body):
-	splat()
+	if(body.get_collision_layer_bit(1) or body.get_collision_layer_bit(2)):
+		print(body)
+		splat()
 	pass # Replace with function body.
 
 
@@ -80,4 +82,14 @@ func _on_TimerDeath_timeout():
 func _on_TimerReScan_timeout():
 	if($FireAnimator.is_playing()==false and moving == false):
 		scan()
+	pass # Replace with function body.
+
+
+
+
+
+func _on_Collider_area_entered(area):
+	if(area.get_collision_layer_bit(1) or area.get_collision_layer_bit(2)):
+		print(area)
+		splat()
 	pass # Replace with function body.

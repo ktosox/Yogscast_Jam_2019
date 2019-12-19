@@ -41,7 +41,8 @@ func redGem():
 	HP = 300
 	$Scaler/Sprite.texture = load("res://GameParts/Slimes/slime_spritesheet_red.png")
 	$TimerBored.stop()
-	$Scaler/Sprite/AnimationPlayer.play("rise_boom")
+	$Scaler/Sprite/AnimationPlayer.play("rise",-1,2.0)
+	$BoomAnimator.play("Explosion")
 
 func blueGem():
 	$Scaler/Sprite.texture = load("res://GameParts/Slimes/slime_spritesheet_blue.png")
@@ -104,10 +105,6 @@ func damange(source):
 	pass
 
 func explode():
-	var all_targets = $Explosion.get_overlapping_areas()
-	for x in all_targets.size():
-		if(all_targets[x].get_collision_layer_bit( 3 )):
-			all_targets[x]._on_Collider_body_entered(self)
 	die()
 
 func die():

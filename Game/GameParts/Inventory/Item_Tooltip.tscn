@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Resources/REXARD/tcg_card/grey_wood/card_title/bg_grey_wood.png" type="Texture" id=1]
+[ext_resource path="res://Resources/REXARD/tcg_card/grey_wood/card_title/frame_grey_wood.png" type="Texture" id=2]
+
+[node name="Item_Tooltip" type="Node2D"]
+modulate = Color( 1, 1, 1, 0.862745 )
+z_index = 2
+
+[node name="border" type="NinePatchRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -148.355
+margin_top = -90.701
+margin_right = 151.645
+margin_bottom = 359.299
+texture = ExtResource( 1 )
+region_rect = Rect2( 0, 850, 1500, 1250 )
+
+[node name="back" type="NinePatchRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -148.355
+margin_top = -90.701
+margin_right = 151.645
+margin_bottom = 359.299
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 850, 1500, 1250 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = -39.6759
+margin_top = 119.61
+margin_right = 42.3241
+margin_bottom = 167.61
+text = "IMA TOLLTIP
+        HI!
+		LOL"
